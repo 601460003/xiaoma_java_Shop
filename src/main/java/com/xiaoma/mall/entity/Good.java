@@ -17,7 +17,7 @@ public class Good {
     //商品类型
     private int nameType;
     //创建时间
-    private Date creatTime;
+    private Date createTime;
     //状态
     private int status;
     //创建者
@@ -48,7 +48,7 @@ public class Good {
     }
 
     public Date getCreatTime() {
-        return creatTime;
+        return createTime;
     }
 
     public int getStatus() {
@@ -83,8 +83,8 @@ public class Good {
         this.nameType = nameType;
     }
 
-    public void setCreatTime(Date creatTime) {
-        this.creatTime = creatTime;
+    public void createTime(Date createTime) {
+        this.createTime = createTime;
     }
 
     public void setStatus(int status) {
@@ -104,7 +104,7 @@ public class Good {
                 ", price=" + price +
                 ", image='" + image + '\'' +
                 ", nameType=" + nameType +
-                ", creatTime=" + creatTime +
+                ", createTime=" + createTime +
                 ", status=" + status +
                 ", createUser=" + createUser +
                 '}';

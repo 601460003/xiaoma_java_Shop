@@ -1,7 +1,7 @@
 spring:
   datasource:
     #≈‰÷√«˝∂Ø
-    driver-class-name: com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
     #≈‰÷√ ˝æ›ø‚µÿ÷∑
     url: jdbc:mysql://localhost:3306/xiaoma_mall?serverTimezone=UTC
     #≈‰÷√mysql’À∫≈
