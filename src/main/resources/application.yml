@@ -1,0 +1,17 @@
+spring:
+  datasource:
+    #配置驱动
+    driver-class-name: com.mysql.jdbc.Driver
+    #配置数据库地址
+    url: jdbc:mysql://localhost:3306/xiaoma_mall?serverTimezone=UTC
+    #配置mysql账号
+    username: root
+    #配置mysql密码
+    password: 123456
+
+#xml文件的位置
+mybatis:
+  mapperLocations: classpath:/mapper/**/*.xml
+  #输出日志
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

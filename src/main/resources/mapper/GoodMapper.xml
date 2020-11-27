@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xiaoma.dao.GoodDao">
+    <insert id="add">
+        insert into good (
+        <trim suffixOverrides=",">
+            <if test="!@com.xiaoma.mall.utils.DaoParamsUtil@isBlank(name)">
+                name,
+            </if>
+            <if test="!@com.xiaoma.mall.utils.DaoParamsUtil@isBlank(remark)">
+                remark,
+            </if>
+            <if test="!@com.xiaoma.mall.utils.DaoParamsUtil@isBlank(price)">
+                price,
+            </if>
+            <if test="!@com.xiaoma.mall.utils.DaoParamsUtil@isBlank(image)">
+                image,
+            </if>
+            <if test="!@com.xiaoma.mall.utils.DaoParamsUtil@isBlank(nameType)">
+                name_type,
+            </if>
+            <if test="!@com.xiaoma.mall.utils.DaoParamsUtil@isBlank(createTime)">
+                create_time,
+            </if>
+            <if test="!@com.xiaoma.mall.utils.DaoParamsUtil@isBlank(status)">
+                status,
+            </if>
+            <if test="!@com.xiaoma.mall.utils.DaoParamsUtil@isBlank(createUser)">
+                create_user
+            </if>
+        </trim>
+        )
+        values(
+        <trim suffixOverrides=",">
+            <if test="!@com.xiaoma.mall.utils.DaoParamsUtil@isBlank(name)">
+                #{name},
+            </if>
+            <if test="!@com.xiaoma.mall.utils.DaoParamsUtil@isBlank(remark)">
+                #{remark},
+            </if>
+            <if test="!@com.xiaoma.mall.utils.DaoParamsUtil@isBlank(price)">
+                #{price},
+            </if>
+            <if test="!@com.xiaoma.mall.utils.DaoParamsUtil@isBlank(image)">
+                #{image},
+            </if>
+            <if test="!@com.xiaoma.mall.utils.DaoParamsUtil@isBlank(nameType)">
+                #{nameType},
+            </if>
+            <if test="!@com.xiaoma.mall.utils.DaoParamsUtil@isBlank(createTime)">
+                #{createTime},
+            </if>
+            <if test="!@com.xiaoma.mall.utils.DaoParamsUtil@isBlank(status)">
+                #{status},
+            </if>
+            <if test="!@com.xiaoma.mall.utils.DaoParamsUtil@isBlank(createUser)">
+                #{createUser}
+            </if>
+        </trim>
+        )
+    </insert>
+    <!--
+     <trim suffixOverrides=","> 表示当拼接的时候结尾符号为逗号时将自动帮我去除，感叹号取反的意思。
+     -->
+</mapper>
+
+
