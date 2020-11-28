@@ -30,9 +30,11 @@ public class GoodController {
         if(file==null){
             return "error";
         }
-        //获取上传文件得后缀
+        // suffixIndex ：返回指定字符在此字符串中最后一次出现处的索引，如果此字符串中没有这样的字符，则返回 -1
         int suffixIndex = file.getOriginalFilename().lastIndexOf(".");
+        //suffix:==> substring(index) 方法返回index到最后的字符串。
         String suffix = file.getOriginalFilename().substring(suffixIndex);
+
         try{
             //将上传得文件做md5加密，获取位的MD值
             MessageDigest md = MessageDigest.getInstance("MD5");
@@ -65,6 +67,8 @@ public class GoodController {
      */
     @GetMapping("getGoodImg/{imgName}")
     public  void getGoodImg(@PathVariable("imgName") String imgName, HttpServletResponse response){
+
+        //io流读取本地绝对路径
         Path path = Paths.get("D:/demo/"+imgName);
         try{
             byte[]  img = Files.readAllBytes(path);
