@@ -5,13 +5,66 @@
     <title>小马哥商城</title>
 </head>
 <body>
-<h3>商品上架</h3>
-<form action="good/shelves" method="post" enctype="multipart/form-data">
-    <div>商品名称<input name="name"></div>
-    <div>商品描述<input name="remark"></div>
-    <div>商品价格<input name="price"></div>
-    <div>商品图片<input name="file" type="file"></div>
-    <div><button type="submit">上架</button></div>
-</form>
+<div id="app">
+    <h3>商品上架</h3>
+    <form action="good/shelves" method="post" enctype="multipart/form-data">
+        <div>商品名称<input name="name"></div>
+        <div>商品描述<input name="remark"></div>
+        <div>商品价格<input name="price"></div>
+        <div>商品图片<input name="file" type="file"></div>
+        <div><button type="submit">上架</button></div>
+    </form>
+    <div style="display:flex;flex-wrap: wrap;">
+        <div v-for="item in list" style="border:solid;margin:2px;padding:5px">
+            <p>商品名称：{{item.name}}</p>
+            <p>商品描述：{{item.remark}}</p>
+            <p>商品价格：{{item.price}}</p>
+            <p>商品价格：{{item.price}}</p>
+            <p>商品数量：{{item.amount||0}}
+                <button @click="updateWarehouse(item,0)">+</button>
+                <button @click="updateWarehouse(item,1)">-</button>
+            </p>
+            <image v-if="item.image" :src="'http://localhost:8080/good/getGoodImg/'+item.image" style="width:50px;height:50px"/>
+        </div>
+    </div>
+</div>
 </body>
+<script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.1/vue.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.0/axios.min.js"></script>
+<script >
+   new Vue({
+        el:'#app',
+        data(){
+            return{
+                list:[]
+            }
+        },
+        created(){
+           axios
+             .get('good/getList')
+             .then(response => {
+                this.list = response.data
+             })
+        },
+         methods:{
+            updateWarehouse(item,type){
+            axios
+             .post('warehouse/updateWarehouse',{
+             goodId:item.id,
+             type:type,
+             oldAmount:item.amount||0
+             }
+
+             )
+             .then(response => {
+                  axios
+                 .get('good/getList')
+                 .then(response => {
+                    this.list = response.data
+                 })
+             })
+            }
+        }
+   })
+</script>
 </html>

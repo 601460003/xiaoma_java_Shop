@@ -2,6 +2,7 @@ package com.xiaoma.mall.controller;
 
 import com.xiaoma.mall.entity.Good;
 import com.xiaoma.mall.service.GoodService;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -15,13 +16,19 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-
+import java.util.List;
+@CrossOrigin
 @RestController
 @RequestMapping("good")
 public class GoodController {
 
     @Autowired
     private GoodService goodService;
+    //获取商品列表
+    @GetMapping("getList")
+    public List<JSONObject> getList(){
+        return goodService.getList();
+    }
     /**
      * 商品文件上传接口
      */

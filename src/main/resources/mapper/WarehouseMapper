@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xiaoma.mall.dao.WarehouseDao">
+    <insert id="addWarehouse">
+        insert into warehouse(good_id,amount,status,create_time,create_user)
+        values(#{goodId},#{amount},#{status},#{createTime},#{createUser})
+    </insert>
+    <update id="updateWarehouse">
+        UPDATE warehouse
+        SET amount = #{amount}
+        WHERE
+        good_id = #{goodId}
+        AND amount = #{oldAmount}
+    </update>
+    <select id="getWarehouseByGoodId" resultType="com.xiaoma.mall.entity.Warehouse">
+        select
+        id,
+        good_id goodId,
+        amount
+        from warehouse
+        where good_id = #{goodId}
+    </select>
+</mapper>
+
+
