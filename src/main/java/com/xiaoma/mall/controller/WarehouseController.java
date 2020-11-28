@@ -27,7 +27,8 @@ public class WarehouseController {
      *
      */
     @PostMapping("updateWarehouse")
-    public JSONObject updateWarehouse(@RequestBody JSONObject requrestJson){
+    //返回一个字符串
+    public String updateWarehouse(@RequestBody JSONObject requrestJson){
         return warehouseService.updateWarehouse(requrestJson);
     }
 }

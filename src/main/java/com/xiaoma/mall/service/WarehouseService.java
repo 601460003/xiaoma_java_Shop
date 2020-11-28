@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface WarehouseService {
     void addWarehouse(Warehouse warehouse);
-    String updateWarehouse(int goodId,int amount,int oldAmount);
+    String updateWarehouse(JSONObject warehouse);
 
     List<Warehouse> getWarehouseByGoodId(JSONObject warehouse);
 }

@@ -12,8 +12,8 @@ import java.util.List;
 public interface WarehouseDao {
     void addWarehouse(Warehouse warehouse);
 
-    String updateWarehouse(int goodId,int amount,int oldAmount);
+    void updateWarehouse(JSONObject warehouse);
 
-    List<Warehouse> getWarehouseByGoodId(JSONObject jsonObject);
+    List<JSONObject> getWarehouseByGoodId(Warehouse warehouse);
 
 }

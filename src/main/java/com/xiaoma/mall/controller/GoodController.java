@@ -25,6 +25,7 @@ public class GoodController {
     @Autowired
     private GoodService goodService;
     //获取商品列表
+    //接口改造先从 Controller 入口开始改-->在改Service-->接着改实现Service类-->最后改Dao数据库操作层&&Mapper.XML
     @GetMapping("getList")
     public List<JSONObject> getList(){
         return goodService.getList();
