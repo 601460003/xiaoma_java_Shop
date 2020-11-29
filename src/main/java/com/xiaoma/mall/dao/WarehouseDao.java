@@ -14,6 +14,8 @@ public interface WarehouseDao {
 
     void updateWarehouse(JSONObject warehouse);
 
-    List<JSONObject> getWarehouseByGoodId(Warehouse warehouse);
 
+    Warehouse getWarehouseByGoodId(int goodId);
+
+    void updateWarehouse(int goodId, int amount, int oldAmount);
 }

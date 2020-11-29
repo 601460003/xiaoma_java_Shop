@@ -9,11 +9,17 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class WarehouseServiceImpl implements WarehouseService {
     @Autowired
     private WarehouseDao warehouseDao;
+
+    @Override
+    public void addWarehouse(Warehouse warehouse) {
+
+    }
 
     @Transactional
     @Override
@@ -42,6 +48,11 @@ public class WarehouseServiceImpl implements WarehouseService {
         }
         warehouseDao.updateWarehouse(goodId,amount,oldAmount);
         return "ok";
+    }
+
+    @Override
+    public List<Warehouse> getWarehouseByGoodId(JSONObject warehouse) {
+        return null;
     }
 
 }
