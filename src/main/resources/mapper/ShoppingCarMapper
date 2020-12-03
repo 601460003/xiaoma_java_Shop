@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xiaoma.mall.dao.ShoppingCarDao">
+    <insert id="add">
+        insert into shopping_car(good_id,member_id,amount,status,create_time,create_user)
+        values(#{goodId},#{memberId},#{amount},#{status},#{createTime},#{createUser})
+    </insert>
+    <update id="update">
+        update shopping_car set amount=amount+1
+        where
+        member_id = #{memberId}
+        and good_id=#{goodId}
+        and status = 0
+        and amount = #{amount}
+    </update>
+    <select id="getCar" resultType="com.xiaoma.mall.entity.ShoppingCar">
+        select id,
+        good_id goodId,
+        member_id memberId,
+        amount
+        from shopping_car
+        where
+        member_id = #{memberId}
+        and good_id=#{goodId}
+        and status = 0
+
+    </select>
+</mapper>
+
+
