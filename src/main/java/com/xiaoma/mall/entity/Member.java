@@ -5,18 +5,18 @@ import java.util.Date;
 public class Member {
     private int id;
     private String name;
-    private String sex;
+    private int sex;
     private String address;
     private String mobile;
     private Date createTime;
     private int status;
-    private int create_user;
+    private int createUser;
 
     public String getName() {
         return name;
     }
 
-    public String getSex() {
+    public int getSex() {
         return sex;
     }
 
@@ -36,9 +36,6 @@ public class Member {
         return status;
     }
 
-    public int getCreate_user() {
-        return create_user;
-    }
 
     public void setName(String name) {
         this.name = name;
@@ -64,9 +61,6 @@ public class Member {
         this.status = status;
     }
 
-    public void setCreate_user(int create_user) {
-        this.create_user = create_user;
-    }
 
     public int getId() {
         return id;
@@ -76,17 +70,11 @@ public class Member {
         this.id = id;
     }
 
-    @Override
-    public String toString() {
-        return "Member{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", sex='" + sex + '\'' +
-                ", address='" + address + '\'' +
-                ", mobile='" + mobile + '\'' +
-                ", createTime=" + createTime +
-                ", status=" + status +
-                ", create_user=" + create_user +
-                '}';
+    public int getCreateUser() {
+        return createUser;
+    }
+
+    public void setCreateUser(int createUser) {
+        this.createUser = createUser;
     }
 }

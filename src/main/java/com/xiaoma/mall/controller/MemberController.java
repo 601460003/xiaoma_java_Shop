@@ -15,8 +15,8 @@ public class MemberController {
     private MemberService memberService;
 
     @PostMapping("login")
-    public JSONObject addMember(@RequestBody JSONObject requrstJson){
-        return memberService.addMember(requrstJson);
+    public JSONObject addMember(@RequestBody JSONObject requestJson){
+        return memberService.addMember(requestJson);
     }
 
 }

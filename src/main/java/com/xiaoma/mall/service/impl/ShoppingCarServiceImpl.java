@@ -31,14 +31,14 @@ public class ShoppingCarServiceImpl implements ShoppingCarService {
         if(warehouse!=null){
             //》0才能添加
             ShoppingCar shoppingCar =new ShoppingCar();
-            shoppingCar.setMember_id(memberId);
-            shoppingCar.setGood_id(goodId);
+            shoppingCar.setMemberId(memberId);
+            shoppingCar.setGoodId(goodId);
             ShoppingCar existCar = shoppingCarDao.getCar(shoppingCar);
             //购物车插入一条数据
             if(existCar==null){
-                shoppingCar.setAmout(1);
-                shoppingCar.setCreate_time(new Date());
-                shoppingCar.setCreate_user(1);
+                shoppingCar.setAmount(1);
+                shoppingCar.setCreateTime(new Date());
+                shoppingCar.setCreateUser(1);
                 shoppingCar.setStatus(0);
                 shoppingCarDao.add(shoppingCar);
             }else {

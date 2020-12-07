@@ -4,66 +4,67 @@ import java.util.Date;
 
 public class ShoppingCar {
     private int id;
-    private int good_id;
-    private int amout;
-    private int member_id;
+    private int goodId;
+    private int amount;
+    private int memberId;
     private int status;
-    private Date create_time;
-    private int create_user;
+    private Date createTime;
+    private int createUser;
 
     public int getId() {
         return id;
     }
 
-    public int getGood_id() {
-        return good_id;
+
+    public int getAmount() {
+        return amount;
     }
 
-    public int getAmout() {
-        return amout;
-    }
-
-    public int getMember_id() {
-        return member_id;
+    public int getMemberId() {
+        return memberId;
     }
 
     public int getStatus() {
         return status;
     }
 
-    public Date getCreate_time() {
-        return create_time;
+    public Date getCreateTime() {
+        return createTime;
     }
 
-    public int getCreate_user() {
-        return create_user;
+    public int getCreateUser() {
+        return createUser;
     }
 
     public void setId(int id) {
         this.id = id;
     }
 
-    public void setGood_id(int good_id) {
-        this.good_id = good_id;
+    public int getGoodId() {
+        return goodId;
     }
 
-    public void setAmout(int amout) {
-        this.amout = amout;
+    public void setGoodId(int goodId) {
+        this.goodId = goodId;
     }
 
-    public void setMember_id(int member_id) {
-        this.member_id = member_id;
+    public void setAmount(int amount) {
+        this.amount = amount;
+    }
+
+    public void setMemberId(int memberId) {
+        this.memberId = memberId;
     }
 
     public void setStatus(int status) {
         this.status = status;
     }
 
-    public void setCreate_time(Date create_time) {
-        this.create_time = create_time;
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 
-    public void setCreate_user(int create_user) {
-        this.create_user = create_user;
+    public void setCreateUser(int createUser) {
+        this.createUser = createUser;
     }
 }

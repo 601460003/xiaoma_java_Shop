@@ -29,9 +29,9 @@ public class MemberServiceImpl implements MemberService {
 
     @Transactional
     @Override
-    public JSONObject addMember(JSONObject requesJson){
+    public JSONObject addMember(JSONObject requestJson){
         //将json中字段转为member实体
-        Member member = JSONObject.toJavaObject(requesJson,Member.class);
+        Member member = JSONObject.toJavaObject(requestJson,Member.class);
 
         //查询会员
         JSONObject existMember = memberDao.getMemberByMobile(member);
@@ -39,16 +39,15 @@ public class MemberServiceImpl implements MemberService {
             //创建会员
             member.setCreateTime(new Date());
             member.setAddress("");
-            member.setCreate_user(1);
+            member.setCreateUser(1);
             member.setSex(0);
-            member.setCreate_user(1);
             memberDao.addMember(member);
             //创建钱包
             Wallet wallet =new Wallet();
-            wallet.setMember_id(member.getId());
-            wallet.setCreate_time(new Date());
+            wallet.setMemberId(member.getId());
+            wallet.setCreateTime(new Date());
             wallet.setStatus(0);
-            wallet.setCreate_user(1);
+            wallet.setCreateUser(1);
             wallet.setMoney(new BigDecimal(0));
             walletDao.addWallet(wallet);
 
@@ -63,14 +62,14 @@ public class MemberServiceImpl implements MemberService {
 //    点击提交过去最新的用户列表。 更新用户信息的接口为member/modifyMember,里面稍微有点逻辑判断
     @Transactional
     @Override
-    public String modifyMember(JSONObject resquesJson){
-        Member member = JSON.toJavaObject(resquesJson,Member.class);
+    public String modifyMember(JSONObject requestJson){
+        Member member = JSON.toJavaObject(requestJson,Member.class);
         //先查找用户是否存在
         if(memberDao.getMemberByMobile(member)!=null){
             //跟新用户的手机地址
-            memberDao.update(resquesJson);
+            memberDao.update(requestJson);
             //跟新用户钱包
-            walletDao.update(resquesJson);
+            walletDao.update(requestJson);
             return "ok";
         }else {
             return "error";
@@ -98,21 +97,21 @@ public class MemberServiceImpl implements MemberService {
 
         Wallet wallet = walletDao.getWalletByMemberId(memberId);
         //钱包余额足够清空购物车
-        if(wallet.getMoney().compareTo(totalPrice)>=0){
-           BigDecimal residue = wallet.getMoney().subtract(totalPrice);
-           JSONObject updateParams = new JSONObject();
-           updateParams.put("money",residue);
-           updateParams.put("id",wallet.getMember_id());
-           walletDao.update(updateParams);
-           //删除购物车中的商品
-            shoppingCarDao.cleanCarIds(carIds);
-            //减库存
-            for (JSONObject item:list){
-                walletDao.subtractWrehouse(item);
-            }
-        }else {
-            return "error";
-        }
+//        if(wallet.getMoney().compareTo(totalPrice)>=0){
+//           BigDecimal residue = wallet.getMoney().subtract(totalPrice);
+//           JSONObject updateParams = new JSONObject();
+//           updateParams.put("money",residue);
+//           updateParams.put("id",wallet.getMemberId());
+//           walletDao.update(updateParams);
+//           //删除购物车中的商品
+//            shoppingCarDao.cleanCarIds(carIds);
+//            //减库存
+//            for (JSONObject item:list){
+//                walletDao.subtractWrehouse(item);
+//            }
+//        }else {
+//            return "error";
+//        }
         return "ok";
     }
 }

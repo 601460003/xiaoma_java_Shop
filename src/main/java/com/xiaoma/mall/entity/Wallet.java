@@ -4,17 +4,17 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 public class Wallet {
-    private int member_id;
-    private String money;
+    private int memberId;
+    private Double money;
     private int status;
-    private Date create_time;
-    private int create_user;
+    private Date createTime;
+    private int createUser;
 
-    public int getMember_id() {
-        return member_id;
+    public int getMemberId() {
+        return memberId;
     }
 
-    public String getMoney() {
+    public Double getMoney() {
         return money;
     }
 
@@ -22,19 +22,19 @@ public class Wallet {
         return status;
     }
 
-    public Date getCreate_time() {
-        return create_time;
+    public Date getCreateTime() {
+        return createTime;
     }
 
-    public int getCreate_user() {
-        return create_user;
+    public int getCreateUser() {
+        return createUser;
     }
 
-    public void setMember_id(int member_id) {
-        this.member_id = member_id;
+    public void setMemberId(int memberId) {
+        this.memberId = memberId;
     }
 
-    public void setMoney(BigDecimal money) {
+    public void setMoney(Double money) {
         this.money = money;
     }
 
@@ -42,22 +42,14 @@ public class Wallet {
         this.status = status;
     }
 
-    public void setCreate_time(Date create_time) {
-        this.create_time = create_time;
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 
-    public void setCreate_user(int create_user) {
-        this.create_user = create_user;
+    public void setCreateUser(int createUser) {
+        this.createUser = createUser;
     }
 
-    @Override
-    public String toString() {
-        return "Wallet{" +
-                "member_id=" + member_id +
-                ", money=" + money +
-                ", status=" + status +
-                ", create_time=" + create_time +
-                ", create_user=" + create_user +
-                '}';
+    public void setMoney(BigDecimal bigDecimal) {
     }
 }

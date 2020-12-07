@@ -14,7 +14,7 @@
         and status = 0
         and amount = #{amount}
     </update>
-    <select id="getCar" resultType="com.xiaoma.mall.entity.ShoppingCar">
+    <select id="getCar" resultType="org.json.JSONObject">
         select id,
         good_id goodId,
         member_id memberId,
