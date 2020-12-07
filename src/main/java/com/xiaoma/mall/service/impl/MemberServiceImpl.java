@@ -30,6 +30,7 @@ public class MemberServiceImpl implements MemberService {
     @Transactional
     @Override
     public JSONObject addMember(JSONObject requestJson){
+
         //将json中字段转为member实体
         Member member = JSONObject.toJavaObject(requestJson,Member.class);
 

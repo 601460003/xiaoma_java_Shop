@@ -9,6 +9,8 @@
         insert into member(name,sex,address,mobile,create_time,status,create_user)
         values (#{name},#{sex},#{address},#{mobile},#{createTime},#{status},#{createUser})
     </insert>
+<!--    遇到的问题1 点击报错-->
+    <!--    遇到的问题2 无法定义钱的类型-->
     <select id="getMemberByMobile" resultType="com.alibaba.fastjson.JSONObject">
         select
         m.id,
