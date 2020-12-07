@@ -2,7 +2,11 @@ package com.xiaoma.mall.dao;
 
 import com.alibaba.fastjson.JSONObject;
 import com.xiaoma.mall.entity.Wallet;
+import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Component;
 
+@Component
+@Mapper
 public interface WalletDao {
     Wallet getWalletByMemberId(int memberId);
 
