@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-public class GodServiceImpl implements GoodService {
+public class GoodServiceImpl implements GoodService {
     @Autowired
     private GoodDao goodDao;
 
@@ -23,6 +23,7 @@ public class GodServiceImpl implements GoodService {
     }
 
     @Override
+    @Transactional
     public  List<JSONObject> getList(){
         return goodDao.getList();
     }

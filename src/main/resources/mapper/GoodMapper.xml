@@ -3,10 +3,10 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.xiaoma.mall.dao.GoodDao">
 <!--    对于left join，不管on后面跟什么条件，左表的数据全部查出来，因此要想过滤需把条件放到where后面-->
-    <select id="getList" resultType="org.json.JSONObject">
+    <select id="getList" resultType="com.alibaba.fastjson.JSONObject">
         SELECT
         g.id,
-        g.NAME,
+        g.name,
         g.remark,
         g.image,
         g.price,
