@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class ShoppingCarServiceImpl implements ShoppingCarService {
@@ -20,9 +21,14 @@ public class ShoppingCarServiceImpl implements ShoppingCarService {
 
     @Autowired
     private ShoppingCarDao shoppingCarDao;
-
     @Transactional
     @Override
+    public List<JSONObject> getList(JSONObject requestJson){
+        return shoppingCarDao.getList(requestJson);
+    }
+
+     @Transactional
+     @Override
     public String addShoppingCar(JSONObject requestJson){
         int goodId = requestJson.getIntValue("goodId");
         int memberId = requestJson.getIntValue("memberId");

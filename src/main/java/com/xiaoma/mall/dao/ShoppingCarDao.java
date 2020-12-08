@@ -19,4 +19,6 @@ public interface ShoppingCarDao {
     void add(ShoppingCar shoppingCar);
 
     void update(ShoppingCar existCar);
+
+    List<JSONObject> getList(JSONObject requestJson);
 }
