@@ -58,4 +58,16 @@ public class Wallet {
     public void setMoney(BigDecimal money) {
         this.money = money;
     }
+
+    @Override
+    public String toString() {
+        return "Wallet{" +
+                "id=" + id +
+                ", memberId=" + memberId +
+                ", money=" + money +
+                ", status=" + status +
+                ", createTime=" + createTime +
+                ", createUser=" + createUser +
+                '}';
+    }
 }

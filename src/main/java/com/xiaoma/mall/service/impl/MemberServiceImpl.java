@@ -52,12 +52,15 @@ public class MemberServiceImpl implements MemberService {
             wallet.setCreateUser(1);
             wallet.setMoney(new BigDecimal(0));
             walletDao.addWallet(wallet);
+            System.out.println(wallet.toString()+"======wallet");
 
+            //这里好像小了一部操作
             JSONObject memberDto = new JSONObject();
             memberDto.put("id",member.getId());
             memberDto.put("name",member.getName());
             memberDto.put("mobile",member.getMobile());
             memberDto.put("money",0);
+            return memberDto;
         }
         return existMember;
     }
