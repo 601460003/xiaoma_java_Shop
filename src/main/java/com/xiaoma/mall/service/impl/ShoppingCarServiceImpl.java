@@ -25,7 +25,7 @@ public class ShoppingCarServiceImpl implements ShoppingCarService {
     @Override
     public String addShoppingCar(JSONObject requestJson){
         int goodId = requestJson.getIntValue("goodId");
-        int memberId = requestJson.getIntValue("menberId");
+        int memberId = requestJson.getIntValue("memberId");
         //先判断数量大于0才能添加
         Warehouse warehouse = warehouseDao.getWarehouseByGoodId(goodId);
         if(warehouse!=null){

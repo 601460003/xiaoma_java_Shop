@@ -13,30 +13,24 @@
             <div><label>手机号码：</label><input name="mobile" v-model="member.mobile" /></div>
             <button  @click="login">登陆/注册</button>
         </div>
-    </div>
-    <p v-if="showInfo">名称：{{member.name}} 手机号码：{{member.mobile}} 钱包余额：{{member.money}}</p>
-    <div v-if="!loginStatus">
-        <h3>商品上架</h3>
-        <form action="good/shelves" method="post" enctype="multipart/form-data">
-            <div>商品名称<input name="name"></div>
-            <div>商品描述<input name="remark"></div>
-            <div>商品价格<input name="price"></div>
-            <div>商品图片<input name="file" type="file"></div>
-            <div><button type="submit">上架</button></div>
-        </form>
-        <div style="display:flex;flex-wrap: wrap;">
+        <div  v-if="!loginStatus">
+            <div><label>名称：</label>{{member.name}} <label>  手机号码：</label>{{member.mobile}}<label>  钱包余额：</label>{{member.money}}</div>
+        </div>
+
+        <div style="display:flex;flex-wrap: wrap;margin-top:100px">
             <div v-for="item in list" style="border:solid;margin:2px;padding:5px">
                 <p>商品名称：{{item.name}}</p>
                 <p>商品描述：{{item.remark}}</p>
                 <p>商品价格：{{item.price}}</p>
-                <p>商品价格：{{item.price}}</p>
-                <p>商品数量：{{item.amount||0}}
-                    <button @click="addShoppingCar(item.id)">加入购物车</button></p>
-                <button @click="updateWarehouse(item,0)">+</button>
-                <button @click="updateWarehouse(item,1)">-</button>
-                </p>
-                <image v-if="item.image" :src="'http://localhost:8080/good/getGoodImg/'+item.image" style="width:50px;height:50px"/>
+                <p>商品数量：{{item.amount||0}} <button @click="addShoppingCar(item.id)">加入购物车</button></p>
+                <image v-if="item.image" :src="'good/getGoodImg/'+item.image" style="width:50px;height:50px"/>
             </div>
+        </div>
+        <div  v-if="!loginStatus">
+            <table title="购物车" border="1">
+                <tr><th>商品名称</th><th>数量</th><th>价格</th></tr>
+                <tr v-for="item in shoppingCarList"><td>{{item.name}}</td><td>{{item.amount}}</td><td>{{item.price}}</td></tr>
+            </table>
         </div>
     </div>
 </div>
@@ -44,64 +38,74 @@
 <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.1/vue.min.js"></script>
 <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.0/axios.min.js"></script>
 <script >
-   new Vue({
-        el:'#app',
-        data(){
-            return{
-              loginStatus:true,
-                   member:{
-                    name:'',
-                    mobile:'',
-                    address:'',
-                    money:0
-                   },
-                list:[],
-                showInfo:false,
-            }
-        },
-        created(){
-           axios
-             .get('good/getList')
-             .then(response => {
-              console.log(response)
-                this.list = response.data
-             })
-        },
-         methods:{
-         login(){
-                    axios.post('member/login',this.member).then(res=>{
-                        this.loginStatus = false
-                        this.showInfo = true
+	new Vue({
+		el: '#app',
+		data() {
+			return {
+				loginStatus: true,
+				member: {
+					id: '',
+					name: '',
+					mobile: '',
+					address: '',
+					money: 0
+				},
+				list: [],
+				shoppingCarList: []
+			}
+		},
+		created() {
+			axios
+				.get('good/getList')
+				.then(response => {
+					console.log(response)
+					this.list = response.data
+				})
+			this.getGoodLists()
+		},
+		methods: {
+			getShoppingCar() {
+				axios.get('shoppingCar/getList?memberId=' + this.member.id).then(response => {
+					this.shoppingCarList = response.data
+				})
+			},
 
-                        this.member.name = res.data.name;
-                        this.member.mobile = res.data.mobile;
-                        this.member.money = res.data.money;
-                        this.member.id = res.data.id
-                    })
-                },
-          addShoppingCar(id){
-
-                    axios.post('shoppingCar/add',{goodId:id,memberId:this.member.id}).then(res=>{
-                    })
-                },
-            updateWarehouse(item,type){
-            axios
-             .post('warehouse/updateWarehouse',{
-             goodId:item.id,
-             type:type,
-             oldAmount:item.amount||0
-             }
-
-             )
-             .then(response => {
-                  axios
-                 .get('good/getList')
-                 .then(response => {
-                    this.list = response.data
-                 })
-             })
-            }
-        }
-   })
+			getGoodLists() {
+				axios.get('good/getList').then(response => {
+					this.list = response.data;
+				})
+			},
+			login() {
+				axios.post('member/login', this.member).then(res => {
+					this.loginStatus = false
+					this.member.name = res.data.name;
+					this.member.mobile = res.data.mobile;
+					this.member.money = res.data.money;
+					this.member.id = res.data.id
+					this.getShoppingCar()
+				})
+			},
+			addShoppingCar(id) {
+				axios.post('shoppingCar/add', {goodId: id, memberId: this.member.id}).then(res => {
+				})
+			},
+			updateWarehouse(item, type) {
+				axios
+					.post('warehouse/updateWarehouse', {
+							goodId: item.id,
+							type: type,
+							oldAmount: item.amount || 0
+						}
+					)
+					.then(response => {
+						axios
+							.get('good/getList')
+							.then(response => {
+								this.list = response.data
+							})
+					})
+			}
+		}
+	})
 </script>
 </html>
