@@ -4,17 +4,26 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 public class Wallet {
+    private int id;
     private int memberId;
-    private Double money;
+    private BigDecimal money;
     private int status;
     private Date createTime;
     private int createUser;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public int getMemberId() {
         return memberId;
     }
 
-    public Double getMoney() {
+    public BigDecimal getMoney() {
         return money;
     }
 
@@ -34,10 +43,6 @@ public class Wallet {
         this.memberId = memberId;
     }
 
-    public void setMoney(Double money) {
-        this.money = money;
-    }
-
     public void setStatus(int status) {
         this.status = status;
     }
@@ -50,6 +55,7 @@ public class Wallet {
         this.createUser = createUser;
     }
 
-    public void setMoney(BigDecimal bigDecimal) {
+    public void setMoney(BigDecimal money) {
+        this.money = money;
     }
 }

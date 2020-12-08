@@ -36,6 +36,7 @@ public class MemberServiceImpl implements MemberService {
 
         //查询会员
         JSONObject existMember = memberDao.getMemberByMobile(member);
+        System.out.println(existMember);
         if(existMember==null){
             //创建会员
             member.setCreateTime(new Date());
@@ -97,22 +98,22 @@ public class MemberServiceImpl implements MemberService {
         }
 
         Wallet wallet = walletDao.getWalletByMemberId(memberId);
-        //钱包余额足够清空购物车
-//        if(wallet.getMoney().compareTo(totalPrice)>=0){
-//           BigDecimal residue = wallet.getMoney().subtract(totalPrice);
-//           JSONObject updateParams = new JSONObject();
-//           updateParams.put("money",residue);
-//           updateParams.put("id",wallet.getMemberId());
-//           walletDao.update(updateParams);
-//           //删除购物车中的商品
-//            shoppingCarDao.cleanCarIds(carIds);
-//            //减库存
-//            for (JSONObject item:list){
-//                walletDao.subtractWrehouse(item);
-//            }
-//        }else {
-//            return "error";
-//        }
+//        钱包余额足够清空购物车
+        if(wallet.getMoney().compareTo(totalPrice)>=0){
+           BigDecimal residue = wallet.getMoney().subtract(totalPrice);
+           JSONObject updateParams = new JSONObject();
+           updateParams.put("money",residue);
+           updateParams.put("id",wallet.getMemberId());
+           walletDao.update(updateParams);
+           //删除购物车中的商品
+            shoppingCarDao.cleanCarIds(carIds);
+            //减库存
+            for (JSONObject item:list){
+                walletDao.subtractWrehouse(item);
+            }
+        }else {
+            return "error";
+        }
         return "ok";
     }
 }
